@@ -49,17 +49,17 @@ axios.get(`https://api.github.com/users/nforman91`)
 */
 
 const followersArray = [
-  'tetondan',
-  'dustinmyers',
-  'justsml',
-  'luishrd',
-  'bigknell'
+  'https://api.github.com/users/tetondan',
+  'https://api.github.com/users/dustinmyers',
+  'https://api.github.com/users/justsml',
+  'https://api.github.com/users/luishrd',
+  'https://api.github.com/users/bigknell'
 ];
 
 followersArray.forEach(item=>{
   axios.get(item)
   .then(res=>{
-    console.log('Here');
+    console.log('Iteration works');
     const manyCards = myGitHub(res.data)
     document.querySelector('.cards').appendChild(manyCards)
   })
@@ -106,6 +106,7 @@ function myGitHub(obj){
   myUsername.textContent = obj.login;
   myLocation.textContent = `Location: ${obj.location}`;
   profile.textContent = `Profile: `;
+  anchor.target = '_blank';
   anchor.setAttribute('href', `${obj["html_url"]}`);
   img.src = obj["avatar_url"];
   anchor.textContent = obj["html_url"];
