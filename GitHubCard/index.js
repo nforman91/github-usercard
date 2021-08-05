@@ -1,8 +1,18 @@
+import axios from "axios"
+
 /*
   STEP 1: using axios, send a GET request to the following URL
     (replacing the placeholder with your Github name):
     https://api.github.com/users/<your name>
 */
+axios.get(`https://api.github.com/users/nforman91`)
+  .then(res => {
+    myData(res)
+    console.log(res);
+  })
+  .catch(err => {
+    console.log(err);
+  })
 
 /*
   STEP 2: Inspect and study the data coming back, this is YOUR
@@ -17,6 +27,16 @@
     and append the returned markup to the DOM as a child of .cards
 */
 
+myGitHub(res);
+axios.get(`https://api.github.com/users/nforman91`)
+  .then(res => {
+    myData(res)
+    console.log(res);
+  })
+  .catch(err => {
+    console.log(err);
+  })
+
 /*
   STEP 5: Now that you have your own card getting added to the DOM, either
     follow this link in your browser https://api.github.com/users/<Your github name>/followers,
@@ -28,7 +48,13 @@
     user, and adding that card to the DOM.
 */
 
-const followersArray = [];
+const followersArray = [
+  tetondan,
+  dustinmyers,
+  justsml,
+  luishrd,
+  bigknell
+];
 
 /*
   STEP 3: Create a function that accepts a single object as its only argument.
@@ -49,6 +75,50 @@ const followersArray = [];
       </div>
     </div>
 */
+
+function myGitHub(data){
+  const firstDiv = document.createElement('div');
+  const img = document.createElement('img');
+  const secondDiv = document.createElement('div');
+  const h3 = document.createElement('h3');
+  const username = document.createElement('p');
+  const locaTion = document.createElement('p');
+  const profile = document.createElement('p');
+  const anchor = document.createElement('a');
+  const followErs = document.createElement('p');
+  const followIng = document.createElement('p');
+  const biO = document.createElement('p');
+
+  firstDiv.appendChild(img);
+  secondDiv.appendChild(h3);
+  secondDiv.appendChild(username);
+  secondDiv.appendChild(locaTion);
+  secondDiv.appendChild(profile);
+  profile.appendChild(anchor);
+  secondDiv.appendChild(followErs);
+  secondDiv.appendChild(followIng);
+  secondDiv.appendChild(biO);
+
+  firstDiv.classList.add('card');
+  secondDiv.classList.add('card-info');
+  h3.classList.add('name');
+  username.classList.add('username');
+
+  h3.textContent = login;
+  username.textContent = login;
+  locaTion.textContent = "Location: " location;
+  profile.textContent = "Profile: ";
+  anchor.textContent = html_url;
+  followErs.textContent = "Followers: " followers;
+  followIng.textContent = "Following: " following;
+  biO.textContent = "Bio: " bio;
+
+  // img.src = image
+
+  
+}
+
+console.log(myGitHub(res));
 
 /*
   List of LS Instructors Github username's:
