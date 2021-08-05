@@ -49,12 +49,24 @@ axios.get(`https://api.github.com/users/nforman91`)
 */
 
 const followersArray = [
-  'https://api.github.com/users/tetondan',
-  'https://api.github.com/users/dustinmyers',
-  'https://api.github.com/users/justsml',
-  'https://api.github.com/users/luishrd',
-  'https://api.github.com/users/bigknell'
+  'tetondan',
+  'dustinmyers',
+  'justsml',
+  'luishrd',
+  'bigknell'
 ];
+
+followersArray.forEach(item=>{
+  axios.get(item)
+  .then(res=>{
+    console.log('Here');
+    const manyCards = myGitHub(res.data)
+    document.querySelector('.cards').appendChild(manyCards)
+  })
+  .catch(err=>{
+    console.log(err);
+  })
+})
 
 /*
   STEP 3: Create a function that accepts a single object as its only argument.
