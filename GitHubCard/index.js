@@ -102,7 +102,7 @@ function myGitHub(obj){
   const myFollowing = document.createElement('p');
   const myBio = document.createElement('p');
 
-  h3.textContent = obj.login;
+  h3.textContent = obj.name;
   myUsername.textContent = obj.login;
   myLocation.textContent = `Location: ${obj.location}`;
   profile.textContent = `Profile: `;
