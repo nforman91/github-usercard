@@ -7,8 +7,9 @@ import axios from "axios"
 */
 axios.get(`https://api.github.com/users/nforman91`)
   .then(res => {
-    myData(res)
+    const GitHubCard = myGitHub(res.data)
     console.log(res);
+    document.querySelector('.cards').appendChild(GitHubCard);
   })
   .catch(err => {
     console.log(err);
@@ -27,15 +28,14 @@ axios.get(`https://api.github.com/users/nforman91`)
     and append the returned markup to the DOM as a child of .cards
 */
 
-myGitHub(res);
-axios.get(`https://api.github.com/users/nforman91`)
-  .then(res => {
-    myData(res)
-    console.log(res);
-  })
-  .catch(err => {
-    console.log(err);
-  })
+// axios.get(`https://api.github.com/users/nforman91`)
+//   .then(res => {
+//     myGitHub(res)
+//     console.log(res);
+//   })
+//   .catch(err => {
+//     console.log(err);
+//   })
 
 /*
   STEP 5: Now that you have your own card getting added to the DOM, either
@@ -48,13 +48,13 @@ axios.get(`https://api.github.com/users/nforman91`)
     user, and adding that card to the DOM.
 */
 
-const followersArray = [
-  tetondan,
-  dustinmyers,
-  justsml,
-  luishrd,
-  bigknell
-];
+// const followersArray = [
+//   tetondan,
+//   dustinmyers,
+//   justsml,
+//   luishrd,
+//   bigknell
+// ];
 
 /*
   STEP 3: Create a function that accepts a single object as its only argument.
@@ -76,49 +76,49 @@ const followersArray = [
     </div>
 */
 
-function myGitHub(data){
-  const firstDiv = document.createElement('div');
+function myGitHub(obj){
+  console.log(obj);
+  const card = document.createElement('div');
   const img = document.createElement('img');
-  const secondDiv = document.createElement('div');
+  const cardInfo = document.createElement('div');
   const h3 = document.createElement('h3');
-  const username = document.createElement('p');
-  const locaTion = document.createElement('p');
+  const myUsername = document.createElement('p');
+  const myLocation = document.createElement('p');
   const profile = document.createElement('p');
   const anchor = document.createElement('a');
-  const followErs = document.createElement('p');
-  const followIng = document.createElement('p');
-  const biO = document.createElement('p');
+  const myFollowers = document.createElement('p');
+  const myFollowing = document.createElement('p');
+  const myBio = document.createElement('p');
 
-  firstDiv.appendChild(img);
-  secondDiv.appendChild(h3);
-  secondDiv.appendChild(username);
-  secondDiv.appendChild(locaTion);
-  secondDiv.appendChild(profile);
+  card.appendChild(img);
+  card.appendChild(cardInfo);
+  cardInfo.appendChild(h3);
+  cardInfo.appendChild(myUsername);
+  cardInfo.appendChild(myLocation);
+  cardInfo.appendChild(profile);
   profile.appendChild(anchor);
-  secondDiv.appendChild(followErs);
-  secondDiv.appendChild(followIng);
-  secondDiv.appendChild(biO);
+  cardInfo.appendChild(myFollowers);
+  cardInfo.appendChild(myFollowing);
+  cardInfo.appendChild(myBio);
 
-  firstDiv.classList.add('card');
-  secondDiv.classList.add('card-info');
+  card.classList.add('card');
+  cardInfo.classList.add('card-info');
   h3.classList.add('name');
-  username.classList.add('username');
+  myUsername.classList.add('username');
 
-  h3.textContent = login;
-  username.textContent = login;
-  locaTion.textContent = "Location: " location;
-  profile.textContent = "Profile: ";
-  anchor.textContent = html_url;
-  followErs.textContent = "Followers: " followers;
-  followIng.textContent = "Following: " following;
-  biO.textContent = "Bio: " bio;
+  h3.textContent = obj.login;
+  myUsername.textContent = obj.login;
+  myLocation.textContent = `Location: ${obj.location}`;
+  profile.textContent = `Profile: `;
+  anchor.setAttribute('href', `${obj["html_url"]}`);
+  img.src = obj["avatar_url"]
+  anchor.textContent = obj["html_url"];
+  myFollowers.textContent = `Followers: ${obj.followers}`;
+  myFollowing.textContent = `Following: ${obj.following}`;
+  myBio.textContent = `Bio: ${obj.bio}`;
 
-  // img.src = image
-
-  
+  return card;
 }
-
-console.log(myGitHub(res));
 
 /*
   List of LS Instructors Github username's:
