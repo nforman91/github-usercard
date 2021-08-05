@@ -48,13 +48,13 @@ axios.get(`https://api.github.com/users/nforman91`)
     user, and adding that card to the DOM.
 */
 
-// const followersArray = [
-//   tetondan,
-//   dustinmyers,
-//   justsml,
-//   luishrd,
-//   bigknell
-// ];
+const followersArray = [
+  'https://api.github.com/users/tetondan',
+  'https://api.github.com/users/dustinmyers',
+  'https://api.github.com/users/justsml',
+  'https://api.github.com/users/luishrd',
+  'https://api.github.com/users/bigknell'
+];
 
 /*
   STEP 3: Create a function that accepts a single object as its only argument.
@@ -90,6 +90,17 @@ function myGitHub(obj){
   const myFollowing = document.createElement('p');
   const myBio = document.createElement('p');
 
+  h3.textContent = obj.login;
+  myUsername.textContent = obj.login;
+  myLocation.textContent = `Location: ${obj.location}`;
+  profile.textContent = `Profile: `;
+  anchor.setAttribute('href', `${obj["html_url"]}`);
+  img.src = obj["avatar_url"];
+  anchor.textContent = obj["html_url"];
+  myFollowers.textContent = `Followers: ${obj.followers}`;
+  myFollowing.textContent = `Following: ${obj.following}`;
+  myBio.textContent = `Bio: ${obj.bio}`;
+
   card.appendChild(img);
   card.appendChild(cardInfo);
   cardInfo.appendChild(h3);
@@ -105,17 +116,6 @@ function myGitHub(obj){
   cardInfo.classList.add('card-info');
   h3.classList.add('name');
   myUsername.classList.add('username');
-
-  h3.textContent = obj.login;
-  myUsername.textContent = obj.login;
-  myLocation.textContent = `Location: ${obj.location}`;
-  profile.textContent = `Profile: `;
-  anchor.setAttribute('href', `${obj["html_url"]}`);
-  img.src = obj["avatar_url"]
-  anchor.textContent = obj["html_url"];
-  myFollowers.textContent = `Followers: ${obj.followers}`;
-  myFollowing.textContent = `Following: ${obj.following}`;
-  myBio.textContent = `Bio: ${obj.bio}`;
 
   return card;
 }
